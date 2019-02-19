@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-19T01:04:07.017Z</updated>
+  <updated>2019-02-19T03:04:33.001Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,16 +17,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>newpapername</title>
-    <link href="http://yoursite.com/2019/02/19/newpapername/"/>
-    <id>http://yoursite.com/2019/02/19/newpapername/</id>
-    <published>2019-02-19T01:04:06.000Z</published>
-    <updated>2019-02-19T01:04:07.017Z</updated>
+    <title>pageone</title>
+    <link href="http://yoursite.com/2019/02/19/pageone/"/>
+    <id>http://yoursite.com/2019/02/19/pageone/</id>
+    <published>2019-02-19T02:55:44.000Z</published>
+    <updated>2019-02-19T03:04:33.001Z</updated>
     
     <summary type="html">
     
     </summary>
     
+    
+      <category term="第一次写博客" scheme="http://yoursite.com/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
