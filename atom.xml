@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-19T03:28:15.506Z</updated>
+  <updated>2019-02-19T03:38:32.483Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <title>Git的使用</title>
     <link href="http://yoursite.com/2019/02/19/Git%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2019/02/19/Git的使用/</id>
-    <published>2019-02-19T03:15:37.000Z</published>
-    <updated>2019-02-19T03:28:15.506Z</updated>
+    <published>2019-02-19T03:35:59.000Z</published>
+    <updated>2019-02-19T03:38:32.483Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="git的工作流程"><a href="#git的工作流程" class="headerlink" title="git的工作流程"></a>git的工作流程</h2><p>a)    从远程仓库中克隆 Git 资源作为本地仓库。</p><p>b)   从本地仓库中checkout代码然后进行代码修改</p><p>c)    在提交前先将代码提交到暂存区。</p><p>d)   提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。</p><p>e)    在修改完成后，需要和团队成员共享代码时，可以将代码push到远程仓库。</p><p><img src="D:\nodejs\node_global\myblog\themes\Cxo\source\img\assets\git流程图.png" alt></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="git的工作流程"><a href="#git的工作流程" class="headerlink" title="git的工作流程"></a>git的工作流程</h2><p>a)    从远程仓库中克隆 Git 资源作为本地仓库。</p><p>b)   从本地仓库中checkout代码然后进行代码修改</p><p>c)    在提交前先将代码提交到暂存区。</p><p>d)   提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。</p><p>e)    在修改完成后，需要和团队成员共享代码时，可以将代码push到远程仓库。</p><p><img src="/2019/02/19/Git的使用/git流程图.png" alt></p>]]></content>
     
     <summary type="html">
     
