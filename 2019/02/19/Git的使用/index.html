@@ -1,0 +1,195 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Git的使用 · 小酥饼的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/run.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">小酥饼</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//www.ityouknow.com/" target="_black">friendA</a></span><span><a href="//www.liaoxuefeng.com/" target="_black">friendB</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">人的一生就像一篇文章，只有经过多次精心修改，才能不断完善</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Git的使用</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-02-19</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="快速上手"> 快速上手</a><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="入门"> 入门</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">838</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h2 id="git的工作流程"><a href="#git的工作流程" class="headerlink" title="git的工作流程"></a>git的工作流程</h2><ol>
+<li><p>从远程仓库中克隆 Git 资源作为本地仓库。</p>
+</li>
+<li><p>从本地仓库中checkout代码然后进行代码修改</p>
+</li>
+<li><p>在提交前先将代码提交到暂存区。</p>
+</li>
+<li><p>提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。</p>
+</li>
+<li><p>在修改完成后，需要和团队成员共享代码时，可以将代码push到远程仓库。</p>
+</li>
+</ol>
+<p><img src="/2019/02/19/Git的使用/git流程图.png" alt></p>
+<h2 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h2><p><strong>下载地址：</strong><a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a></p>
+<p><img src="/2019/02/19/Git的使用/git1.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/git2.png" alt></p>
+<p>一路点击<strong>next</strong>，使用默认配置即可</p>
+<p>安装完成后在cmd中输入<strong>git –version</strong>查看是否安装成功</p>
+<p><img src="/2019/02/19/Git的使用/git3.png" alt></p>
+<h2 id="版本库客户端TortoiseGit安装"><a href="#版本库客户端TortoiseGit安装" class="headerlink" title="版本库客户端TortoiseGit安装"></a>版本库客户端TortoiseGit安装</h2><p>下载地址：<a href="https://tortoisegit.org/download/" target="_blank" rel="noopener">https://tortoisegit.org/download/</a></p>
+<p><img src="/2019/02/19/Git的使用/tor1.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/tor2.png" alt></p>
+<p>一路点击<strong>next</strong></p>
+<p><img src="/2019/02/19/Git的使用/tor3.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/tor4.png" alt></p>
+<p>等待完成，点击Finish</p>
+<p><img src="/2019/02/19/Git的使用/tor5.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/tor6.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/tor7.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/tor8.png" alt></p>
+<p>安装完成后，在桌面点击鼠标左键，会出现Git相关菜单</p>
+<p><img src="/2019/02/19/Git的使用/tor9.png" alt></p>
+<h2 id="在IntelliJ-IDEA中使用git"><a href="#在IntelliJ-IDEA中使用git" class="headerlink" title="在IntelliJ IDEA中使用git"></a>在IntelliJ IDEA中使用git</h2><p>选择File→Settings打开设置窗口，找到Version Control下的git选项：配置git.exe的路径，点击“Test”按钮测试是否正确配置</p>
+<p><img src="/2019/02/19/Git的使用/id1.png" alt></p>
+<h3 id="场景一：组长创建项目并提交到远程Git仓库"><a href="#场景一：组长创建项目并提交到远程Git仓库" class="headerlink" title="场景一：组长创建项目并提交到远程Git仓库"></a>场景一：组长创建项目并提交到远程Git仓库</h3><ol>
+<li>创建本地仓库</li>
+</ol>
+<p><img src="/2019/02/19/Git的使用/id2.png" alt></p>
+<ol start="2">
+<li><p>选择项目所在目录</p>
+<p><img src="/2019/02/19/Git的使用/id3.png" alt></p>
+</li>
+<li><p>在需要上传的项目上点击鼠标右键，选择选择Git菜单，选着add命令，将项目添加到本地仓库的暂存区，然后再次选择commit命令把暂存区文件提交到本地仓库</p>
+</li>
+</ol>
+<p><img src="/2019/02/19/Git的使用/id4.png" alt></p>
+<ol start="4">
+<li>选择上传的代码以及提交说明</li>
+</ol>
+<p><img src="/2019/02/19/Git的使用/id5.png" alt></p>
+<ol start="5">
+<li>然后上传到远程仓库</li>
+</ol>
+<p><img src="/2019/02/19/Git的使用/id6.png" alt></p>
+<p>首次提交，Push前需要指定远程仓库地址</p>
+<p><img src="/2019/02/19/Git的使用/id7.png" alt></p>
+<p>提交之后右下角可能会提示错误，这个在第一次提交到代码仓库的时候非常容易出现，因为初始化的仓库和本地仓库是没有什么关联的。</p>
+<p><img src="/2019/02/19/Git的使用/id8.png" alt></p>
+<p>解决：找到自己项目所在的目录，右键选择<code>GIT BASH Here</code></p>
+<p><img src="/2019/02/19/Git的使用/id9.png" alt></p>
+<p>在terminl窗口中依次输入命令：</p>
+<p>​    <code>git pull</code></p>
+<p>​    <code>git pull origin master</code></p>
+<p>​    <code>git pull origin master --allow-unrelated-histories</code></p>
+<p>在idea中重新push自己的项目，成功</p>
+<p><img src="/2019/02/19/Git的使用/id10.png" alt></p>
+<h3 id="场景二：组员从远程Git仓库上获取项目源码"><a href="#场景二：组员从远程Git仓库上获取项目源码" class="headerlink" title="场景二：组员从远程Git仓库上获取项目源码"></a>场景二：组员从远程Git仓库上获取项目源码</h3><p><img src="/2019/02/19/Git的使用/ide1.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/ide2.png" alt></p>
+<p>然后将项目克隆到本地</p>
+<h3 id="场景三：组员修改了部分源码，提交到远程仓库"><a href="#场景三：组员修改了部分源码，提交到远程仓库" class="headerlink" title="场景三：组员修改了部分源码，提交到远程仓库"></a>场景三：组员修改了部分源码，提交到远程仓库</h3><p>提交之前首先更新一下，否则会产生冲突</p>
+<p><img src="/2019/02/19/Git的使用/ide18.png" alt></p>
+<h3 id="场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发"><a href="#场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发" class="headerlink" title="场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发"></a>场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发</h3><p>建分支是一个常用的操作，例如临时修改bug、开发不确定是否加入的功能等，都可以创建一个分支，再等待合适的时机合并到主干。</p>
+<p><img src="/2019/02/19/Git的使用/ide8.png" alt></p>
+<p>选择New Branch并输入一个分支的名称</p>
+<p><img src="/2019/02/19/Git的使用/ide9.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/ide10.png" alt></p>
+<p>创建成功后IDEA右下角会显示当前分支</p>
+<p><img src="/2019/02/19/Git的使用/ide11.png" alt></p>
+<p>我们可以点击<strong>Checkout</strong>切换分支</p>
+<p><img src="/2019/02/19/Git的使用/ide12.png" alt></p>
+<h3 id="场景五：组员把分支提交到远程Git仓库"><a href="#场景五：组员把分支提交到远程Git仓库" class="headerlink" title="场景五：组员把分支提交到远程Git仓库"></a>场景五：组员把分支提交到远程Git仓库</h3><p><strong>参考场景一</strong></p>
+<h3 id="场景六：组长获取组员提交的分支"><a href="#场景六：组长获取组员提交的分支" class="headerlink" title="场景六：组长获取组员提交的分支"></a>场景六：组长获取组员提交的分支</h3><p><img src="/2019/02/19/Git的使用/ide13.png" alt></p>
+<p><img src="/2019/02/19/Git的使用/ide14.png" alt></p>
+<p>更新后，再点击右下角，可以看到在<strong>Remote Branches</strong>区已经有了新的分支，点击后在弹出的子菜单中选择<strong>Checkout as new local branch</strong>，在本地仓库中创建该分支。完成后在<strong>Local Branches</strong>区也会出现该分支的选项，可以按上面的方法，点击后选择<strong>Checkout</strong>切换。</p>
+<p><img src="/2019/02/19/Git的使用/ide15.png" alt></p>
+<h3 id="场景七：组长把分支合并到主干"><a href="#场景七：组长把分支合并到主干" class="headerlink" title="场景七：组长把分支合并到主干"></a>场景七：组长把分支合并到主干</h3><p><img src="/2019/02/19/Git的使用/ide16.png" alt></p>
+<p>选择需要合并的分支（前提在主分支的情况下）</p>
+<p><img src="/2019/02/19/Git的使用/ide17.png" alt></p>
+</article><!-- lincense--><div class="post-paginator"><div class="clear"></div></div><div id="comment"><div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc1Mi8xOTI5OQ=="><script>(function (d, s) {
+  var j, e = d.getElementsByTagName(s)[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git的工作流程"><span class="toc-number">1.</span> <span class="toc-text">git的工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git的安装"><span class="toc-number">2.</span> <span class="toc-text">git的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本库客户端TortoiseGit安装"><span class="toc-number">3.</span> <span class="toc-text">版本库客户端TortoiseGit安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在IntelliJ-IDEA中使用git"><span class="toc-number">4.</span> <span class="toc-text">在IntelliJ IDEA中使用git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#场景一：组长创建项目并提交到远程Git仓库"><span class="toc-number">4.1.</span> <span class="toc-text">场景一：组长创建项目并提交到远程Git仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景二：组员从远程Git仓库上获取项目源码"><span class="toc-number">4.2.</span> <span class="toc-text">场景二：组员从远程Git仓库上获取项目源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景三：组员修改了部分源码，提交到远程仓库"><span class="toc-number">4.3.</span> <span class="toc-text">场景三：组员修改了部分源码，提交到远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发"><span class="toc-number">4.4.</span> <span class="toc-text">场景四：组员接受了一个新功能的任务，创建了一个分支并在分支上开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景五：组员把分支提交到远程Git仓库"><span class="toc-number">4.5.</span> <span class="toc-text">场景五：组员把分支提交到远程Git仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景六：组长获取组员提交的分支"><span class="toc-number">4.6.</span> <span class="toc-text">场景六：组长获取组员提交的分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景七：组长把分支合并到主干"><span class="toc-number">4.7.</span> <span class="toc-text">场景七：组长把分支合并到主干</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
